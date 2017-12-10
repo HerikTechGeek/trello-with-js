@@ -9,21 +9,22 @@
 
     <body>
         <div id="header">
-            <button id='addNewBoard'>Add Board</button>
+            <a href="#" id='addNewBoard'> Create New Board</a>
         </div>
         <div id="content"></div>
         <div id="footer">
 
         </div>
 
-        <form id="newBoardPopup" name="newBoardPopup" class='hidden' >
+        <form id="newBoardPopup" autocomplete="off" name="newBoardPopup" class='hidden' >
             <input type="text" id="boardTitle" placeholder="Board Title" />
-            <input type="text" id="createdBy" placeholder="Board Created By" value='Default' />
+            <input type="text" id="createdBy" placeholder="Board Created By" />
             <button id="btnBoardSave">Save</button>
         </form>
         
         <script src="js/jquery-1.12.4.js"></script>
         <script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/cards.js"></script>
         <script type="text/javascript" src="js/boards.js"></script>
         <script type="text/javascript" src="js/helpers.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
