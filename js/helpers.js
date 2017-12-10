@@ -11,9 +11,4 @@ Helpers.prototype.KeyGenerator = function() {
     }
 }
 
-Helpers.prototype.bindEvents = function(app) {
-    $("#addNewBoard").click((event) => {
-        // app.create();
-    })
-    // this.bindEvents();
-}
+

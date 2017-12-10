@@ -13,32 +13,46 @@ function Boards() {
     this.helpers = new Helpers()
     this.keyGenerator = this.helpers.KeyGenerator();
 }
-Boards.prototype.init = function() {
-    this.create('Default', 'Default User');
-
-    this.helpers.bindEvents(this);
-
-    this.renderHeader();
-    this.renderContent();
-    this.renderFooter();
+Boards.prototype.init = function() {   
+    this.bindEvents(this);    
 }
 
 Boards.prototype.create = function(title, createdBy) {
     console.log("Boards create called");
-    debugger;
-    var id = this.keyGenerator()
-    var board = new Board(id, title, createdBy);
+    let id = this.keyGenerator()
+    let board = new Board(id, title, createdBy);
     this.boards[id] = board;
+    this.renderContent();
     console.log("Boards create called", this.boards);
 }
 
-
 Boards.prototype.renderContent = function() {
-    var btnAddBoard = $('<button id="addNewBoard">Add Board</button>');
-    btnAddBoard.click(function(){
-        this.create('Default', 'Default User');
+    let boardsHtml = '';
+    Object.keys(this.boards).forEach(key => {            
+        boardsHtml += `<div class='board'  id="${this.boards[key].id}">
+                            <div>${this.boards[key].title}</div>
+                            <div>${this.boards[key].createdBy}</div>                       
+                        </div>`;
     });
+    $("#content").html(boardsHtml);            
+}
 
-    document.getElementById('content').appendChild(btnAddBoard);
 
+Boards.prototype.bindEvents = function (app) {
+    $("#addNewBoard").click((event) => {
+        $("#newBoardPopup").dialog({
+            modal: true,                        
+        });
+        $("#newBoardPopup").dialog('open');        
+    })
+
+    $("#newBoardPopup").submit((event) => {
+        event.preventDefault();
+        let boardTitle = $("#boardTitle").val();
+        let createdBy = $("#createdBy").val();        
+        console.log(boardTitle, createdBy);
+        this.create(boardTitle, createdBy);
+        debugger;
+        
+    })    
 }
