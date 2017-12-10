@@ -1,15 +1,14 @@
-(function() {
-    function App() {
-        console.log("App called");
-     }
-
-     window.onload = function() {
-         console.log("Doc Loaded", App);
-         debugger;
-         new App.Boards();
-     }
-
+function App() {
+    console.log("App called");
+    var boards = new Boards();
+    boards.init();
+    debugger;
     return {
-        app: App
+        boards: boards
     }
-}());
+}
+
+window.onload = function() {
+    console.log("Doc Loaded", App);
+    new App();
+}
